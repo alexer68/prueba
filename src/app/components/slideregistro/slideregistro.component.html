@@ -1,0 +1,107 @@
+<ion-slides pager="true">
+    <ion-slide>
+
+        <div *ngIf="disabledslide1 === false">
+            <ion-card mode="ios">
+                <ion-card-header>
+                    <ion-img src="/assets/slides/card-outline.svg"></ion-img>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-label position="floating">Código de Tarjeta</ion-label>
+                        <ion-input type="text" maxlength="10" (input)='onInputrfid($event.target.value)'></ion-input>
+                    </ion-item>
+                    <ion-button size="medium" color="primary" fill="outline" shape="round" (click)="onclick_Registrar()">
+                        Validar
+                    </ion-button>
+                </ion-card-content>
+            </ion-card>
+        </div>
+
+        <div *ngIf="disabledslide2===false">
+            <ion-card mode="ios ">
+                <!-- <img src="/assets/slides/registro.svg " class="slide-image "> -->
+                <ion-card-header>
+                    <ion-img src="/assets/slides/registro.svg"></ion-img>
+                    <!-- <ion-card-title> Registro </ion-card-title> -->
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-label position="floating">
+                            <h4>* NOMBRE:</h4>
+                        </ion-label>
+                        <ion-input type="text" maxlength="30" (input)='onInputnombre($event.target.value)'></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">
+                            <h4>* APELLIDOS:</h4>
+                        </ion-label>
+                        <ion-input type="text" maxlength="30" (input)='onInputapellidos($event.target.value)'></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">
+                            <h4>* TELEFONO MOVIL:</h4>
+                        </ion-label>
+                        <ion-input type="tel" maxlength="15" (input)='onInputcel($event.target.value)'></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">
+                            <h4>* CORREO:</h4>
+                        </ion-label>
+                        <ion-input inputmode="email" maxlength="100" (input)='onInputemail($event.target.value)'></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating ">
+                            <h4>CLAVE DE 4 DIGITOS:</h4>
+                        </ion-label>
+                        <ion-input type="tel" maxlength="4" (input)='onInputcveacceso($event.target.value)'></ion-input>
+                    </ion-item>
+
+                    <ion-button fill="outline" color="primary" size="medium" shape="round" (click)="guardaDatos()">
+                        Registrar
+                        <!-- <ion-icon name="cloud-upload-outline"></ion-icon> -->
+                    </ion-button>
+                </ion-card-content>
+            </ion-card>
+        </div>
+
+        <div *ngIf="disabledslide3===false">
+            <ion-card mode="ios">
+                <img src="/assets/slides/bienvenido.svg" class="slide-image">
+                <ion-card-header>
+                    <ion-card-title> Bienvenido </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    Te invitamos a conocer
+                    <p>
+                        el uso de tu APP a través del tutorial.
+                    </p>
+                    <br>
+                    <p>
+                        Activa a las personas autorizadas para recoger
+                    </p>
+                    <p>
+                        a tu hijo, avisa virtualmente y guarda la sana distancia
+                    </p>
+                    <p>
+                        utilizando la lectura de tu TAG, o activa el código en tu
+                    </p>
+                    <p>
+                        dispositivo móvil.
+                    </p>
+                    <div alignment="center ">
+                        Se ha enviado a tu correo: {{ email }} la cadena de confirmación para registrarte a VORTEX SCHOOL.
+                    </div>
+                    <p></p>
+                    <p></p>
+                    <p>
+                        <ion-button expand="full " color="primary " fill="clear " (click)="onClick_Empezar() ">
+                            Comenzar!
+                        </ion-button>
+                    </p>
+                </ion-card-content>
+            </ion-card>
+        </div>
+
+    </ion-slide>
+</ion-slides>

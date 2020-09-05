@@ -1,0 +1,84 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="Regresar" defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <!-- <app-signalr (sendmsgEvent)="sendMsg($event)">
+        </app-signalr> -->
+
+        <ion-button slot="end" (click)="selfiltro()" color="light">
+            <ion-icon style="color:darkblue; font-size:x-large" name="settings-outline"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="opvista === 1">
+    <ion-tabs>
+
+        <ion-tab-bar slot="buttom">
+            <ion-tab-button tab="scanqr">
+                <ion-icon name="qr-code-outline"></ion-icon>
+                <ion-label>Lector QR</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button tab="scanrfid">
+                <ion-icon name="radio-outline"></ion-icon>
+                <ion-label>Lector RFID</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button tab="entrega">
+                <ion-icon name="tv-outline"></ion-icon>
+                <ion-label>Entrega</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+
+    </ion-tabs>
+</ion-content>
+
+<ion-content *ngIf="opvista === 2">
+    <ion-list #lista>
+        <ion-item-sliding *ngFor="let ua of relua">
+            <ion-item>
+
+                <ion-checkbox slot="start" [(ngModel)]="ua.selected" color="tertiary">
+                </ion-checkbox>
+                <ion-label class="ion-text-wrap">{{ ua.desua }}
+                </ion-label>
+
+            </ion-item>
+        </ion-item-sliding>
+    </ion-list>
+
+    <ion-list #lista>
+        <ion-item-sliding *ngFor="let usr of relusers">
+            <ion-item>
+                <ion-label>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="1">
+                                <ion-checkbox [(ngModel)]="usr.selected" color="tertiary">
+                                </ion-checkbox>
+                            </ion-col>
+                            <ion-col size="3">
+                                <ion-avatar>
+                                    <img src="{{ usr.foto }}">
+                                </ion-avatar>
+                            </ion-col>
+                            <ion-col size="8">
+                                <ion-label class="ion-text-wrap">{{ usr.nombre }} </ion-label>
+                                <p>{{ usr.apellidos }}</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-label>
+            </ion-item>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="opvista === 2">
+    <ion-button class="ion-text-center" expand="block" (click)="almacenaParametros()">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+        <ion-label>REGRESAR</ion-label>
+    </ion-button>
+</ion-footer>

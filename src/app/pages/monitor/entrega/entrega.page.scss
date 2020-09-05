@@ -1,0 +1,10 @@
+@font-face {
+    font-family: MyFont;
+    src: url("src\assets\fonts\Exo-Medium.ttf");
+}
+
+.fontcvo {
+    font-family: 'MyFont' !important;
+    font-size: 100%;
+    color: var(--ion-color-primary);
+}

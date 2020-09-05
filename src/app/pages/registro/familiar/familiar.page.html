@@ -1,0 +1,84 @@
+<!-- <app-header titulo="GESTIONAR CONDOMINIO"></app-header> -->
+
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list #lista>
+        <ion-item-sliding *ngFor="let usr of users">
+            <ion-item>
+                <ion-label>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="3">
+                                <ion-avatar>
+                                    <img src="{{ usr.foto }}">
+                                </ion-avatar>
+                            </ion-col>
+                            <ion-col size="7">
+                                <h3>{{ usr.nombre }}</h3>
+                                <p>{{ usr.apellidos }}</p>
+
+                                <ion-label class="ion-text-wrap" color="danger" *ngIf="usr.sitbloqueo === true">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                    {{ usr.rfid }} -{{ usr.sitrfid }}
+                                </ion-label>
+                                <ion-label class="ion-text-wrap" color="medium" *ngIf="usr.sitactivo === 0 && usr.sitbloqueo === false">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                    {{ usr.rfid }} -{{ usr.sitrfid }}
+                                </ion-label>
+                                <ion-label class="ion-text-wrap" color="primary" *ngIf="usr.sitactivo === 1 && usr.sitbloqueo === false">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                    {{ usr.rfid }} -{{ usr.sitrfid }}
+                                </ion-label>
+                                <ion-label class="ion-text-wrap" color="secondary" *ngIf="usr.sitactivo === 2 && usr.sitbloqueo === false">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                    {{ usr.sitrfid }}
+                                </ion-label>
+                                <!-- <p>
+                                    <ion-icon name="call-outline"></ion-icon>
+                                    {{ usr.cel }}
+                                </p>
+                                <p *ngIf="usr.sitmaster === true">
+                                    <ion-icon name="mail-outline"></ion-icon>
+                                    {{ usr.email }}
+                                </p> -->
+                            </ion-col>
+                            <ion-col size="2">
+                                <ion-buttons color="primary" size="1">
+                                    <ionic-context-menu icon="ellipsis-vertical">
+                                        <ionic-context-menu-item *ngIf="sitmaster === true && usr.sitactivo === 0" icon="add-circle-outline" (click)="menuContextual(1, usr)">Activar</ionic-context-menu-item>
+                                        <ionic-context-menu-item *ngIf="sitmaster === true && usr.sitactivo === 1" icon="remove-circle-outline" (click)="menuContextual(1, usr)">Desactivar</ionic-context-menu-item>
+                                        <ionic-context-menu-item *ngIf="sitmaster === true && usr.idusrmaster === idusr" icon="camera-outline" (click)="menuContextual(3, usr)">Cámara</ionic-context-menu-item>
+                                        <ionic-context-menu-item *ngIf="sitmaster === true && usr.idusrmaster === idusr" icon="image-outline" (click)="menuContextual(2, usr)">Galeria</ionic-context-menu-item>
+                                        <ionic-context-menu-item *ngIf="sitmaster === true && usr.idusrmaster === idusr && usr.sitactivo !== 2" icon="card-outline" (click)="menuContextual(4, usr)">Solicitar TAG</ionic-context-menu-item>
+                                        <ionic-context-menu-item *ngIf="sitmaster === true && usr.idusrmaster === idusr" icon="create-outline" (click)="menuContextual(5, usr)">Editar</ionic-context-menu-item>
+                                        <ionic-context-menu-item *ngIf="sitmaster === true" icon="trash-outline" (click)="menuContextual(6, usr)">Eliminar</ionic-context-menu-item>
+                                    </ionic-context-menu>
+                                </ion-buttons>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-label>
+            </ion-item>
+
+            <ion-item-options side="start">
+                <ion-item-option color="primary" (click)="shareCodeQR(usr)" *ngIf="sitmaster === true && usr.idusrmaster === idusr">
+                    <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+                </ion-item-option>
+                <ion-item-option color="warning" (click)="updCodigoAcceso(usr)" *ngIf="(sitmaster === true && usr.idusrmaster === idusr) || (usr.idusr === idusr)">
+                    <ion-icon slot="icon-only" name="keypad-outline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="sitmaster === true">
+        <ion-fab-button (click)="addFamiliar()">
+            <ion-icon name="person-add-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

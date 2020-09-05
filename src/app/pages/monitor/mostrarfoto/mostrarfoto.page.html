@@ -1,0 +1,14 @@
+<ion-content>
+    <ion-slides [options]="swiperOpts">
+        <ion-slide>
+            <img [src]="fotodata" style="align-items: center" />
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+
+<ion-footer>
+    <ion-button class="ion-text-center" expand="block" (click)="salir()" fill="outline">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+        <ion-label>Regresar</ion-label>
+    </ion-button>
+</ion-footer>

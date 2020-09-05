@@ -1,0 +1,86 @@
+<ion-content *ngIf="opvista === 1">
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list #lista>
+        <ion-item-sliding *ngFor="let alumno of relalumnos">
+
+            <ion-item color="light">
+                <ion-label>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="3">
+                                <ion-avatar>
+                                    <img src="{{ alumno.foto }}">
+                                </ion-avatar>
+                                <ion-icon *ngIf="alumno.timerest !== undefined" size="medium" src="./assets/svg/hand-holding-solid.svg" color="secondary"></ion-icon>
+                                <ion-icon *ngIf="alumno.timerest === undefined && alumno.cveinvitado !== undefined" size="medium" name="code-working-outline" color="primary"></ion-icon>
+                            </ion-col>
+
+                            <ion-col size="7">
+                                <h2>{{ alumno.nombre }} </h2>
+                                <h4>{{ alumno.apellidos }}</h4>
+                                <p>{{ alumno.desua }} {{ alumno.timerest }}
+                                </p>
+                            </ion-col>
+
+                            <ion-col size="2">
+                                <ion-buttons color="primary" size="1">
+                                    <ionic-context-menu icon="ellipsis-vertical">
+                                        <ionic-context-menu-item *ngIf="sitmaster === true && alumno.cveinvitado === undefined && alumno.timerest === undefined" icon="code-working-outline" (click)="menuContextual(1, alumno)">Generar clave</ionic-context-menu-item>
+                                        <ionic-context-menu-item *ngIf="sitmaster === true && alumno.cveinvitado !== undefined && alumno.timerest === undefined" icon="code-download-outline" (click)="menuContextual(2, alumno)">Cancelar clave</ionic-context-menu-item>
+                                        <ionic-context-menu-item *ngIf="sitmaster === true" icon="remove-circle-outline" (click)="menuContextual(4, alumno)">Eliminar</ionic-context-menu-item>
+                                    </ionic-context-menu>
+                                </ion-buttons>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-label>
+            </ion-item>
+
+            <ion-item-options side="start">
+                <ion-item-option color="primary" (click)="shareCode(alumno)" *ngIf="sitmaster === true && alumno.cveinvitado !== undefined && alumno.timerest === undefined">
+                    <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+                    {{ alumno.cveinvitado }}
+                </ion-item-option>
+            </ion-item-options>
+
+        </ion-item-sliding>
+    </ion-list>
+
+
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="sitmaster === true">
+        <ion-fab-button (click)="presentActionSheet()">
+            <ion-icon color="warning" name="person-add-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>
+
+<ion-content padding *ngIf="opvista === 2">
+
+    <ion-slides [options]="swiperOpts">
+        <ion-slide class="ion-align-items-center">
+            <ion-card>
+                <ion-card-content>
+                    <ion-item class="ion-text-center; ion-text-uppercase">
+                        <ion-label position="floating">CLAVE DE INVITACION</ion-label>
+                        <ion-input style="font-size: 2em;" type="text" [(ngModel)]="cveinvitado" (input)='onInputcveinvitado($event.target.value)'></ion-input>
+                    </ion-item>
+                    <ion-item class="ion-text-center">
+                        <ion-button size="medium" color="primary" fill="outline" shape="round" (click)="onclick_cveinvitado()">
+                            Aceptar
+                        </ion-button>
+                        <ion-button size="medium" color="primary" fill="outline" shape="round" (click)="onclick_cveinvitado_cancel()">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+
+</ion-content>

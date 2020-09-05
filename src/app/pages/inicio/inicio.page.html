@@ -1,0 +1,42 @@
+<ion-header *ngIf="opingreso===1">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="primary" menu="primerMenu">
+            </ion-menu-button>
+        </ion-buttons>
+        <ion-title color="primary">VORTEX SCHOOL</ion-title>
+        <ion-button slot="end" (click)="encodedText()" color="light">
+            <ion-icon style="color:darkblue; font-size:xx-large" name="qr-code-outline"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+
+</ion-header>
+
+<!-- Pantalla de Registro, TAG -->
+<ion-content padding *ngIf="opingreso===0">
+    <app-slideregistro (opingresoEvent)="opIngresoEmitido()" userId="{{ this.userId }}">
+    </app-slideregistro>
+</ion-content>
+
+<ion-content padding *ngIf="opingreso===1">
+    <ion-item class="ion-align-items-center">
+        <ion-label>NOTIFICACIONES</ion-label>
+    </ion-item>
+</ion-content>
+
+<!-- Cargando Pantalla (Load inicial) -->
+<ion-content padding *ngIf="opingreso===2">
+    <img src="./assets/animated/spinwait.svg" class="loadimg">
+</ion-content>
+
+<!-- Validando Clave de Ingreso -->
+<ion-content padding *ngIf="opingreso===3">
+    <ion-slides [options]="swiperOpts">
+        <ion-slide class="ion-align-items-center">
+            <ion-item class="ion-text-center">
+                <ion-label position="floating">CUATRO DIGITOS</ion-label>
+                <ion-input style="font-size: 2em;" maxlength="4" type="number" pattern="[0-9]*" inputmode="numeric" min=1000 max="9999" [(ngModel)]="cveacceso" (input)='onInput4digitos($event.target.value)'></ion-input>
+            </ion-item>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

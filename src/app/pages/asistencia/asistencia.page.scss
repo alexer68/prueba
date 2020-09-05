@@ -1,0 +1,10 @@
+@font-face {
+    font-family: MyFont;
+    src: url("src\assets\fonts\Exo-Medium.ttf");
+}
+
+ion-back-button,
+ion-title {
+    font-family: 'MyFont' !important;
+    font-size: 70%;
+}

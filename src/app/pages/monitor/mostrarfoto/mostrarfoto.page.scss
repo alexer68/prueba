@@ -1,0 +1,10 @@
+.myphoto {
+    // transform: rotate(-90deg);
+    ion-content img {
+        height: 70vh !important;
+        width: auto !important;
+        margin: auto;
+        display: block;
+        // align-items: center;
+    }
+}
