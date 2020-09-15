@@ -2,7 +2,7 @@
 <widget id="mx.com.seclife.accessschool" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Access School</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="soporte@seclife.com.mx" href="http://seclife.com.mx/">DALEG</author>
+    <author email="soporte@seclife.com.mx" href="http://seclife.com.mx/">SECLIFE</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
