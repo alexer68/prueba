@@ -1,0 +1,55 @@
+<app-header titulo="Prueba 01">
+</app-header>
+
+
+<ion-content>
+
+
+    <ion-list *ngFor="let tito of relusers">
+
+        <ion-item-sliding>
+
+            <ion-item>
+                <ion-grid>
+                    <ion-row>
+
+                        <ion-col>
+                            <ion-avatar>
+                                <ion-img src="{{tito.foto}}"></ion-img>
+                            </ion-avatar>
+
+                        </ion-col>
+
+                        <ion-col>
+                            <ion-label>
+                                {{tito.apellidos}}
+                            </ion-label>
+                            <p>
+                                {{tito.nombre}}
+                            </p>
+                        </ion-col>
+
+                    </ion-row>
+
+                </ion-grid>
+            </ion-item>
+
+            <ion-item-options side="start">
+
+                <ion-item-option color="secondary" (click)="alexis()">
+                    <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+                </ion-item-option>
+
+
+            </ion-item-options>
+
+        </ion-item-sliding>
+
+
+
+
+
+    </ion-list>
+
+
+</ion-content>

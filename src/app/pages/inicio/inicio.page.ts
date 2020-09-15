@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Platform, IonRouterOutlet, ToastController } from '@ionic/angular';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+
 import { AppComponent } from '../../app.component';
 import { DataService } from '../../services/data.service';
 import { IParameters } from '../../services/data.model';
-import { Platform, IonRouterOutlet, ToastController } from '@ionic/angular';
 import { PushService } from '../../services/push.service';
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+
 
 @Component({
   selector: 'app-inicio',
@@ -57,13 +59,21 @@ export class InicioPage implements OnInit {
 
   loadBD() {
     if (this.dataService.userId === undefined && this.pushService.userId !== undefined) {
+
+
       this.sParam.op = 0;
       this.sParam.userId = this.pushService.userId;
+
       this.dataService.getDataLoad(this.sParam).subscribe( res => {
+
+        console.log(res);
+
         this.userId = this.pushService.userId;
         if (res.CodeNumber === 201) { this.opingreso = 3; }
         else { this.opingreso = 0; }
       });
+
+
     } else {
       if (this.dataService.userId === undefined) {
         this.segundos = 2;
@@ -80,6 +90,7 @@ export class InicioPage implements OnInit {
       this.sParam.cveacceso = Number(this.cveacceso);
       this.dataService.getDataLoad(this.sParam).subscribe( res => {
         if (res.CodeNumber === 201) {
+          console.log(res);
           this.appComponent.imenu = res.Result[0].menu;
           this.dataService.userId = res.Result[0].usr[0].userId;
           this.dataService.idusr = res.Result[0].usr[0].idusr;

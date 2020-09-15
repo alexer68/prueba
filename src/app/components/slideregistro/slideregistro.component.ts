@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { DataService } from '../../services/data.service';
 import { ToastController } from '@ionic/angular';
+
+
 import { AppComponent } from '../../app.component';
+import { DataService } from '../../services/data.service';
 import { IParameters } from '../../services/data.model';
 import { IUsr } from 'src/app/interfaces/interfaces';
 import { IData, ISendEmail } from '../../interfaces/interfaces';

@@ -16,6 +16,7 @@ export class PushService {
   constructor(private oneSignal: OneSignal,
               private dataService: DataService) {}
 
+
   async getMensajes() {
     // await this.cargarMensajes();
     return [...this.mensajes];
@@ -73,5 +74,5 @@ export class PushService {
     });
     return payload;
   }
-  
+
 }

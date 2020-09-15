@@ -41,10 +41,13 @@
             </ion-item>
 
             <ion-item-options side="start">
+
                 <ion-item-option color="primary" (click)="shareCode(alumno)" *ngIf="sitmaster === true && alumno.cveinvitado !== undefined && alumno.timerest === undefined">
                     <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
                     {{ alumno.cveinvitado }}
                 </ion-item-option>
+
+
             </ion-item-options>
 
         </ion-item-sliding>
